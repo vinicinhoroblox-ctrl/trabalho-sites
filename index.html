@@ -1,0 +1,848 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Care Innovation Team</title>
+
+    <style>
+        /* ===== CONFIGURAÇÕES GERAIS ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        :root {
+            --azul: #72b9ff;
+            --lilas: #a58bff;
+            --roxo: #7351c9;
+            --rosa: #f6a0d4;
+            --amarelo: #ffe49a;
+            --texto: #4531a5;
+            --branco: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 25px;
+        }
+
+        body {
+            min-height: 100vh;
+            color: var(--texto);
+            background:
+                radial-gradient(ellipse at 15% 10%,
+                    #b6d7ff 0%, transparent 35%),
+                radial-gradient(ellipse at 85% 15%,
+                    #ffcfb2 0%, transparent 35%),
+                radial-gradient(ellipse at 80% 80%,
+                    #f9b9e5 0%, transparent 35%),
+                linear-gradient(135deg, #f8d9ff, #fff1d9, #fce3f2);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button, input {
+            font: inherit;
+        }
+
+        button, .botao {
+            cursor: pointer;
+        }
+
+        /* ===== CABEÇALHO ===== */
+        header {
+            width: 100%;
+            padding: 22px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .marca {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 19px;
+            font-weight: 800;
+        }
+
+        .marca-icone {
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            font-size: 30px;
+            background: linear-gradient(135deg, var(--azul), var(--rosa));
+            border-radius: 16px;
+            box-shadow: 0 5px 15px #a58bff55;
+        }
+
+        nav {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            padding: 10px 15px;
+            border-radius: 25px;
+            transition: 0.3s;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            background: #ffffffa8;
+            transform: translateY(-2px);
+        }
+
+        /* ===== ELEMENTOS REUTILIZÁVEIS ===== */
+        .botao {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 25px;
+            border: none;
+            border-radius: 30px;
+            color: white;
+            background: linear-gradient(100deg, #ad8aff, #7955df);
+            box-shadow: 0 7px 18px #9372e544;
+            transition: 0.25s;
+            font-weight: 700;
+        }
+
+        .botao:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 24px #9372e566;
+        }
+
+        .botao-claro {
+            color: var(--texto);
+            background: linear-gradient(100deg, #c6d9ff, #e8ccff);
+        }
+
+        .botao-amarelo {
+            color: var(--texto);
+            background: linear-gradient(100deg, #ffe5a2, #ffd0b6);
+        }
+
+        .secao {
+            width: min(1100px, 90%);
+            margin: 45px auto;
+        }
+
+        .cartao {
+            padding: 30px;
+            border: 1px solid #ffffffc9;
+            border-radius: 28px;
+            background: #ffffffa3;
+            box-shadow: 0 15px 40px #8266b51c;
+            backdrop-filter: blur(12px);
+        }
+
+        .subtitulo {
+            margin: 12px 0 28px;
+            color: #7968b9;
+            line-height: 1.7;
+        }
+
+        .titulo-secao {
+            font-size: clamp(26px, 4vw, 38px);
+        }
+
+        /* ===== TELA 1: ABERTURA ===== */
+        .abertura {
+            min-height: 75vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .abertura-conteudo {
+            width: min(680px, 100%);
+            padding: 50px 25px;
+        }
+
+        .logo-grande {
+            font-size: clamp(80px, 13vw, 125px);
+            line-height: 1.3;
+            filter: drop-shadow(0 8px 12px #a58bff30);
+        }
+
+        .abertura h1 {
+            font-size: clamp(32px, 6vw, 53px);
+            line-height: 1.15;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #427fea, #a34fe0, #ef78b6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .abertura p {
+            max-width: 470px;
+            margin: 0 auto 28px;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .etiquetas {
+            margin: 20px 0 30px;
+            color: #8170b5;
+            font-size: 14px;
+            word-spacing: 8px;
+        }
+
+        /* ===== TELA 2: LOGIN E CADASTRO ===== */
+        .login-area {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            align-items: stretch;
+        }
+
+        .login-card {
+            max-width: 490px;
+            width: 100%;
+            margin: auto;
+        }
+
+        .login-card h2 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .login-card > p {
+            color: #7968b9;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .campo {
+            margin-bottom: 17px;
+        }
+
+        .campo label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .campo input {
+            width: 100%;
+            padding: 15px 17px;
+            border: 1px solid #c8b8ff;
+            border-radius: 18px;
+            outline: none;
+            color: var(--texto);
+            background: #ffffffbd;
+            transition: 0.2s;
+        }
+
+        .campo input:focus {
+            border-color: #8766ed;
+            box-shadow: 0 0 0 4px #a58bff26;
+        }
+
+        .login-card .botao {
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        .divisor {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 22px 0;
+        }
+
+        .divisor::before,
+        .divisor::after {
+            content: "";
+            height: 1px;
+            flex: 1;
+            background: #d8c8ff;
+        }
+
+        .aviso {
+            margin-top: 16px;
+            font-size: 12px;
+            color: #7968b9;
+            line-height: 1.6;
+        }
+
+        /* ===== TELA 3: MENU PRINCIPAL ===== */
+        .boas-vindas {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 28px;
+        }
+
+        .boas-vindas h2 {
+            font-size: clamp(25px, 4vw, 36px);
+        }
+
+        .boas-vindas p {
+            color: #7968b9;
+            line-height: 1.7;
+            margin-top: 8px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 17px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 23px;
+            border-radius: 23px;
+            transition: 0.25s;
+            border: 1px solid #ffffff90;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px #7351c922;
+        }
+
+        .menu-item:nth-child(1) {
+            background: linear-gradient(110deg, #d3e1ff, #e5dcff);
+        }
+
+        .menu-item:nth-child(2) {
+            background: linear-gradient(110deg, #ffe5bd, #ffd5c8);
+        }
+
+        .menu-item:nth-child(3) {
+            background: linear-gradient(110deg, #f8d4ff, #f8c6e7);
+        }
+
+        .menu-item:nth-child(4) {
+            background: linear-gradient(110deg, #f9c5e4, #ffd4e7);
+        }
+
+        .menu-item:nth-child(5) {
+            background: linear-gradient(110deg, #fff0b5, #ffe3a0);
+        }
+
+        .menu-icone {
+            width: 55px;
+            height: 55px;
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            font-size: 30px;
+            background: #ffffff70;
+            border-radius: 18px;
+        }
+
+        .menu-item h3 {
+            margin-bottom: 6px;
+        }
+
+        .menu-item p {
+            font-size: 13px;
+            color: #7865b0;
+            line-height: 1.5;
+        }
+
+        .seta {
+            margin-left: auto;
+            font-size: 23px;
+        }
+
+        /* ===== TELA 4: PROJETOS ===== */
+        .projetos-topo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .projetos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .projeto {
+            padding: 22px;
+            border: 1px solid #e8dcff;
+            border-radius: 24px;
+            background: #ffffffb5;
+            transition: 0.25s;
+        }
+
+        .projeto:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 25px #7351c91c;
+        }
+
+        .projeto-icone {
+            width: 55px;
+            height: 55px;
+            display: grid;
+            place-items: center;
+            font-size: 29px;
+            border-radius: 17px;
+            background: linear-gradient(135deg, #d7e6ff, #f3d6ff);
+            margin-bottom: 18px;
+        }
+
+        .projeto h3 {
+            margin-bottom: 10px;
+        }
+
+        .projeto p {
+            color: #7968b9;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 17px;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .andamento {
+            background: #c8f4df;
+            color: #187b56;
+        }
+
+        .planejamento {
+            background: #efd2ff;
+            color: #7744b7;
+        }
+
+        .concluido {
+            background: #d1e7ff;
+            color: #2867ba;
+        }
+
+        .novo-projeto {
+            margin-top: 25px;
+        }
+
+        .form-projeto {
+            margin-top: 30px;
+            scroll-margin-top: 30px;
+        }
+
+        /* ===== RODAPÉ ===== */
+        footer {
+            text-align: center;
+            padding: 35px 20px;
+            color: #7968b9;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        /* ===== RESPONSIVIDADE ===== */
+        @media (max-width: 800px) {
+            header {
+                justify-content: center;
+            }
+
+            .login-area {
+                grid-template-columns: 1fr;
+            }
+
+            .projetos-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 560px) {
+            header {
+                padding: 20px 5%;
+            }
+
+            nav {
+                justify-content: center;
+            }
+
+            nav a {
+                padding: 9px 11px;
+                font-size: 12px;
+            }
+
+            .secao {
+                width: 92%;
+                margin: 30px auto;
+            }
+
+            .cartao {
+                padding: 23px 18px;
+            }
+
+            .abertura-conteudo {
+                padding: 30px 10px;
+            }
+
+            .menu-grid,
+            .projetos-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-item {
+                padding: 18px;
+            }
+
+            .boas-vindas {
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- CABEÇALHO E NAVEGAÇÃO -->
+    <header>
+        <a href="#inicio" class="marca">
+            <span class="marca-icone">💗</span>
+            <span>Health Care<br>Innovation Team</span>
+        </a>
+
+        <nav>
+            <a href="#inicio">Início</a>
+            <a href="#login">Entrar</a>
+            <a href="#menu">Menu</a>
+            <a href="#projetos">Projetos</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- TELA 1: ABERTURA -->
+        <section class="secao abertura" id="inicio">
+            <div class="abertura-conteudo">
+                <div class="logo-grande">💗💡</div>
+
+                <h1>Health Care<br>Innovation Team</h1>
+
+                <p>
+                    Juntos por um futuro mais saudável e inovador.
+                    Criando ideias que transformam a saúde por meio
+                    da tecnologia e da colaboração.
+                </p>
+
+                <div class="etiquetas">
+                    Tecnologia • Pessoas • Saúde
+                </div>
+
+                <a href="#login" class="botao">
+                    Começar <span>➜</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- TELA 2: LOGIN E CADASTRO -->
+        <section class="secao login-area" id="login">
+
+            <div class="cartao login-card">
+                <h2>Bem-vindo de volta!</h2>
+                <p>Faça login para continuar sua jornada de inovação.</p>
+
+                <form action="#menu" method="get">
+                    <div class="campo">
+                        <label for="email-login">E-mail</label>
+                        <input
+                            type="email"
+                            id="email-login"
+                            placeholder="seuemail@exemplo.com"
+                            required
+                        >
+                    </div>
+
+                    <div class="campo">
+                        <label for="senha-login">Senha</label>
+                        <input
+                            type="password"
+                            id="senha-login"
+                            placeholder="Digite sua senha"
+                            minlength="4"
+                            required
+                        >
+                    </div>
+
+                    <button type="submit" class="botao">
+                        Entrar <span>➜</span>
+                    </button>
+                </form>
+
+                <p class="aviso">
+                    Demonstração escolar: o formulário não verifica
+                    credenciais nem cria uma sessão real.
+                </p>
+            </div>
+
+            <div class="cartao login-card" id="cadastro">
+                <h2>Crie sua conta!</h2>
+                <p>Faça parte de uma equipe que transforma ideias em soluções.</p>
+
+                <form action="#menu" method="get">
+                    <div class="campo">
+                        <label for="nome-cadastro">Nome completo</label>
+                        <input
+                            type="text"
+                            id="nome-cadastro"
+                            placeholder="Digite seu nome"
+                            required
+                        >
+                    </div>
+
+                    <div class="campo">
+                        <label for="email-cadastro">E-mail</label>
+                        <input
+                            type="email"
+                            id="email-cadastro"
+                            placeholder="seuemail@exemplo.com"
+                            required
+                        >
+                    </div>
+
+                    <div class="campo">
+                        <label for="senha-cadastro">Criar senha</label>
+                        <input
+                            type="password"
+                            id="senha-cadastro"
+                            placeholder="Crie uma senha"
+                            minlength="4"
+                            required
+                        >
+                    </div>
+
+                    <button type="submit" class="botao botao-amarelo">
+                        Criar conta <span>➜</span>
+                    </button>
+                </form>
+
+                <p class="aviso">
+                    Os dados não são salvos. O cadastro é apenas visual.
+                </p>
+            </div>
+
+        </section>
+
+        <!-- TELA 3: MENU PRINCIPAL -->
+        <section class="secao cartao" id="menu">
+
+            <div class="boas-vindas">
+                <div>
+                    <h2>Olá, equipe! 👋</h2>
+                    <p>
+                        Vamos transformar ideias em soluções
+                        para a saúde!
+                    </p>
+                </div>
+
+                <div class="marca-icone">💗</div>
+            </div>
+
+            <div class="menu-grid">
+
+                <a href="#inicio" class="menu-item">
+                    <div class="menu-icone">⌂</div>
+                    <div>
+                        <h3>Início</h3>
+                        <p>Volte para a tela de abertura.</p>
+                    </div>
+                    <span class="seta">›</span>
+                </a>
+
+                <a href="#projetos" class="menu-item">
+                    <div class="menu-icone">📁</div>
+                    <div>
+                        <h3>Projetos</h3>
+                        <p>Acompanhe nossas iniciativas.</p>
+                    </div>
+                    <span class="seta">›</span>
+                </a>
+
+                <a href="#equipe" class="menu-item">
+                    <div class="menu-icone">👥</div>
+                    <div>
+                        <h3>Equipe</h3>
+                        <p>Conheça nossos colaboradores.</p>
+                    </div>
+                    <span class="seta">›</span>
+                </a>
+
+                <a href="#inovacao" class="menu-item">
+                    <div class="menu-icone">💡</div>
+                    <div>
+                        <h3>Inovação</h3>
+                        <p>Ideias que geram impacto.</p>
+                    </div>
+                    <span class="seta">›</span>
+                </a>
+
+                <a href="#configuracoes" class="menu-item">
+                    <div class="menu-icone">⚙️</div>
+                    <div>
+                        <h3>Configurações</h3>
+                        <p>Preferências do aplicativo.</p>
+                    </div>
+                    <span class="seta">›</span>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- TELA 4: FUNÇÃO PRINCIPAL - PROJETOS -->
+        <section class="secao cartao" id="projetos">
+
+            <div class="projetos-topo">
+                <div>
+                    <h2 class="titulo-secao">Nossos projetos ✨</h2>
+                    <p class="subtitulo">
+                        Acompanhe as ideias que estão transformando a saúde.
+                    </p>
+                </div>
+
+                <a href="#novo-projeto" class="botao">
+                    + Novo projeto
+                </a>
+            </div>
+
+            <div class="projetos-grid">
+
+                <article class="projeto">
+                    <div class="projeto-icone">💗</div>
+                    <h3>Monitoramento inteligente</h3>
+                    <p>
+                        Uso de sensores e tecnologia para
+                        acompanhamento remoto de pacientes.
+                    </p>
+                    <span class="status andamento">Em andamento</span>
+                </article>
+
+                <article class="projeto">
+                    <div class="projeto-icone">📱</div>
+                    <h3>Bem-estar digital</h3>
+                    <p>
+                        Aplicativo com hábitos saudáveis
+                        e qualidade de vida.
+                    </p>
+                    <span class="status planejamento">Planejamento</span>
+                </article>
+
+                <article class="projeto">
+                    <div class="projeto-icone">🧠</div>
+                    <h3>Inovação em saúde</h3>
+                    <p>
+                        Soluções tecnológicas para melhorar
+                        o atendimento médico.
+                    </p>
+                    <span class="status concluido">Concluído</span>
+                </article>
+
+            </div>
+
+            <!-- FORMULÁRIO DEMONSTRATIVO -->
+            <div class="cartao form-projeto" id="novo-projeto">
+                <h2>Propor novo projeto 💡</h2>
+                <p class="subtitulo">
+                    Preencha os campos para apresentar uma nova ideia.
+                </p>
+
+                <form action="#projetos" method="get">
+                    <div class="campo">
+                        <label for="nome-projeto">Nome do projeto</label>
+                        <input
+                            type="text"
+                            id="nome-projeto"
+                            placeholder="Ex.: Saúde conectada"
+                            required
+                        >
+                    </div>
+
+                    <div class="campo">
+                        <label for="descricao-projeto">Descrição</label>
+                        <input
+                            type="text"
+                            id="descricao-projeto"
+                            placeholder="Descreva sua ideia"
+                            required
+                        >
+                    </div>
+
+                    <button type="submit" class="botao">
+                        Enviar proposta ➜
+                    </button>
+
+                    <p class="aviso">
+                        Formulário demonstrativo: para cadastrar projetos
+                        e exibi-los na lista, será necessário adicionar
+                        JavaScript e armazenamento de dados.
+                    </p>
+                </form>
+            </div>
+        </section>
+
+        <!-- SEÇÃO EQUIPE -->
+        <section class="secao cartao" id="equipe">
+            <h2 class="titulo-secao">Nossa equipe 👥</h2>
+            <p class="subtitulo">
+                Pessoas trabalhando juntas para criar um futuro
+                mais saudável por meio da inovação.
+            </p>
+            <a href="#menu" class="botao botao-claro">Voltar ao menu</a>
+        </section>
+
+        <!-- SEÇÃO INOVAÇÃO -->
+        <section class="secao cartao" id="inovacao">
+            <h2 class="titulo-secao">Inovação em saúde 💡</h2>
+            <p class="subtitulo">
+                Exploramos tecnologia, criatividade e colaboração
+                para desenvolver soluções para a área da saúde.
+            </p>
+            <a href="#projetos" class="botao">Ver projetos</a>
+        </section>
+
+        <!-- SEÇÃO CONFIGURAÇÕES -->
+        <section class="secao cartao" id="configuracoes">
+            <h2 class="titulo-secao">Configurações ⚙️</h2>
+            <p class="subtitulo">
+                Personalize sua experiência de navegação.
+                Esta versão demonstra apenas a interface.
+            </p>
+            <a href="#menu" class="botao botao-claro">Voltar ao menu</a>
+        </section>
+
+    </main>
+
+    <footer>
+        <p><strong>Health Care Innovation Team</strong></p>
+        <p>Juntos por um futuro mais saudável e inovador. 💜</p>
+        <p>Projeto educacional desenvolvido por Juliana Debortoli Mattjie.</p>
+        <p><a href="#inicio">Voltar ao início ↑</a></p>
+    </footer>
+
+</body>
+</html>
